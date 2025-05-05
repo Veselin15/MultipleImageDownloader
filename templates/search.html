@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Downloader</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<header>
+    <h1>Image Downloader</h1>
+</header>
+
+<!-- Search Form -->
+<form method="get" action="{% url 'search_images' %}">
+    <input type="text" name="keyword" placeholder="Enter a keyword..." value="{{ keyword }}" required>
+    <button type="submit">Search</button>
+</form>
+
+{% if images %}
+    <!-- Pagination Buttons (Top) -->
+    <div class="pagination top-pagination">
+        {% if page > 1 %}
+            <a href="?keyword={{ keyword }}&page={{ page|add:"-1" }}">⬅ Previous</a>
+        {% endif %}
+        {% if has_next %}
+            <a href="?keyword={{ keyword }}&page={{ page|add:"1" }}">Next ➡</a>
+        {% endif %}
+    </div>
+
+    <form id="image-form" method="post" action="{% url 'download_images' %}" onsubmit="return validateSelection()">
+        {% csrf_token %}
+
+        <div class="action-buttons">
+            <button type="button" onclick="selectAll(true)">Mark All</button>
+            <button type="button" onclick="selectAll(false)">Unmark All</button>
+            <button type="submit">Download Selected as ZIP</button>
+        </div>
+
+        <!-- Image Results -->
+        <div class="results-container">
+            {% for img in images %}
+                <div class="image-box">
+                    <img src="{{ img }}" onclick="toggleCheckbox('{{ forloop.counter }}')">
+                    <div class="checkbox-container">
+                        <input type="checkbox" name="image_urls" value="{{ img }}" id="checkbox_{{ forloop.counter }}">
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination Buttons (Bottom) -->
+        <div class="pagination bottom-pagination">
+            {% if page > 1 %}
+                <a href="?keyword={{ keyword }}&page={{ page|add:"-1" }}">⬅ Previous</a>
+            {% endif %}
+            {% if has_next %}
+                <a href="?keyword={{ keyword }}&page={{ page|add:"1" }}">Next ➡</a>
+            {% endif %}
+        </div>
+    </form>
+{% endif %}
+
+<script>
+    function selectAll(state) {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="image_urls"]');
+        checkboxes.forEach(cb => cb.checked = state);
+    }
+
+    function validateSelection() {
+        const selected = document.querySelectorAll('input[type="checkbox"][name="image_urls"]:checked');
+        if (selected.length === 0) {
+            alert("Please select at least one image to download.");
+            return false; // Prevent form submission
+        }
+        return true; // Allow submission
+    }
+
+    function toggleCheckbox(imageId) {
+        const checkbox = document.getElementById('checkbox_' + imageId);
+        checkbox.checked = !checkbox.checked;
+    }
+</script>
+
+</body>
+</html>

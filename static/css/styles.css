@@ -1,0 +1,110 @@
+/* Basic reset for body and margins */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+/* Header style */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Form styling */
+form {
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Styling for buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Styling for results section */
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.image-box {
+    margin: 10px;
+    text-align: center;
+    position: relative;
+}
+
+img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Checkbox container style */
+.checkbox-container {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Styling for action buttons (Mark All, Unmark All) */
+.action-buttons {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.action-buttons button {
+    background-color: #007bff;
+    margin: 0 10px;
+}
+
+.action-buttons button:hover {
+    background-color: #0056b3;
+}
+
+/* Pagination (top and bottom) */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #007bff;
+    margin: 0 10px;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}
+
+/* Styling for top pagination */
+.top-pagination {
+    margin-top: 20px;
+}
+
+/* Styling for bottom pagination */
+.bottom-pagination {
+    margin-bottom: 20px;
+}
