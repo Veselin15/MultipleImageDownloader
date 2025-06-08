@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-*q&mh*is-t1mv5mkgxdy)t!6i8x5t=s2mvi!76ly6y!=n!#m^o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'multipleimagedownloader.onrender.com'
+]
 
 
 # Application definition
