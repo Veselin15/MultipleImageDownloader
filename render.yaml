@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: multipleimagedownloader
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn MultipleImageDownloader.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: False
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DJANGO_SETTINGS_MODULE
+        value: MultipleImageDownloader.settings
